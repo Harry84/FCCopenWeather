@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Bitter|Inconsolata|McLaren|Muli|Oldenburg|PT+Sans|Patua+One|Roboto+Slab|Ubuntu');
+
+.header {
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+}
+
+.weather {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid black;
+  height: 400px;
+}
+
+h1 {
+  font-family: "McLaren";
+}
+
+h2 {
+  font-family: "Bitter";
+  font-size: 5em;
+}
+
+#icon {
+  display: flex;
+  height: 400px;
+  border: 1px solid black;
+}
