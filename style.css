@@ -33,3 +33,9 @@ h2 {
 #canvasId {
   background-color: pink;
 }
+
+figure {
+	margin: 5em auto;
+	width: 350px;
+	height: 150px;
+}

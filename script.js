@@ -879,9 +879,12 @@ function setIcon(weatherCode) {
   } else if ( weatherCode === 800 ) {
     canvasVar.id = "clear";
   }  else if ( weatherCode > 800 && weatherCode < 805 ) {
-    console.log(canvasVar.id, "var id");
     canvasVar.id = "cloudy";
-    console.log(canvasVar.id, "hi hi hi");
+
+    icons.set(canvasVar.id, Skycons.CLOUDY);
+
+    //canvasVar.id = "cloudy";
+    console.log(canvasVar.id, "show cloudy if it is cloudy");
   } else if ( weatherCode > 900 ) {
     canvasVar.id = "wind";
   }
