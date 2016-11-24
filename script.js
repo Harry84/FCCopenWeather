@@ -5,7 +5,7 @@ var jsonObject = {
   },
   "weather": [
     {
-      "id": 803,
+      "id": 700,
       "main": "Clouds",
       "description": "broken clouds",
       "icon": "04d"
@@ -135,27 +135,30 @@ function changeUnits() {
 
 function setIcon(weatherCode) {
   console.log(weatherCode, "weather code");
-  if ( weatherCode[0] === 2 ) {
-    canvasVar.set(Skycons.SLEET);
-  } else if ( weatherCode[0] === 3 ) {
+  if ( weatherCode >= 200 && weatherCode <= 299 ) {
+    canvasVar.id = "sleet";
+    icons.set(canvasVar.id, Skycons.SLEET);
+  } else if ( weatherCode >= 300 && weatherCode <= 399 ) {
     canvasVar.id = "rain";
-  } else if ( weatherCode[0] === 5 ) {
+    icons.set(canvasVar.id, Skycons.RAIN);
+  } else if ( weatherCode >= 500 && weatherCode <= 599 ) {
     canvasVar.id = "rain";
-  }  else if ( weatherCode[0] === 6 ) {
+    icons.set(canvasVar.id, Skycons.RAIN);
+  }  else if ( weatherCode >= 600 && weatherCode <= 699 ) {
     canvasVar.id = "snow";
-  }  else if ( weatherCode[0] === 7 ) {
+    icons.set(canvasVar.id, Skycons.SNOW);
+  }  else if ( weatherCode >= 700 && weatherCode <= 799 ) {
     canvasVar.id = "fog";
+    icons.set(canvasVar.id, Skycons.FOG);
   } else if ( weatherCode === 800 ) {
     canvasVar.id = "clear";
+    icons.set(canvasVar.id, Skycons.CLEAR);
   }  else if ( weatherCode > 800 && weatherCode < 805 ) {
     canvasVar.id = "cloudy";
-
     icons.set(canvasVar.id, Skycons.CLOUDY);
-
-    //canvasVar.id = "cloudy";
-    console.log(canvasVar.id, "show cloudy if it is cloudy");
   } else if ( weatherCode > 900 ) {
     canvasVar.id = "wind";
+    icons.set(canvasVar.id, Skycons.CLEAR);
   }
 }
 unitsButton.addEventListener('click', changeUnits);
