@@ -1,56 +1,62 @@
 var jsonObject = {
-  "coord": {
-    "lon": -0.1,
-    "lat": 51.38
-  },
-  "weather": [
-    {
-      "id": 700,
-      "main": "Clouds",
-      "description": "broken clouds",
-      "icon": "04d"
-    }
-    ],
-      "base": "stations",
-      "main": {
-      "temp": 9.45,
-      "pressure": 1022,
-      "humidity": 87,
-      "temp_min": 8,
-      "temp_max": 11
-      },
-        "visibility": 9000,
-        "wind": {
-        "speed": 8.2,
-        "deg": 50
-        },
-          "clouds": {
-          "all": 75
-          },
-            "dt": 1479973800,
-            "sys": {
-            "type": 1,
-            "id": 5088,
-            "message": 0.0564,
-            "country": "GB",
-            "sunrise": 1479972830,
-            "sunset": 1480003220
-            },
-              "id": 2651817,
-              "name": "Croydon",
-              "cod": 200};
+"coord": {
+"lon": 5.97,
+"lat": 52.21
+},
+"weather": [
+{
+"id": 801,
+"main": "Clouds",
+"description": "few clouds",
+"icon": "02d"
+}
+],
+"base": "stations",
+"main": {
+"temp": 281.19,
+"pressure": 1021,
+"humidity": 56,
+"temp_min": 280.15,
+"temp_max": 282.15
+},
+"visibility": 10000,
+"wind": {
+"speed": 6.7,
+"deg": 50
+},
+"clouds": {
+"all": 20
+},
+"dt": 1480082100,
+"sys": {
+"type": 1,
+"id": 5207,
+"message": 0.0038,
+"country": "NL",
+"sunrise": 1480058106,
+"sunset": 1480087878
+},
+"id": 2759706,
+"name": "Apeldoorn",
+"cod": 200
+};
 var locationApiUrl = "http://geoip.nekudo.com/api";
 var baseUrl = "http://api.openweathermap.org/data/2.5/weather?";
 var lat = "lat=";
 var long = "&lon=";
 var apiId = "&appid=afe224f25cdf028a03b1b75949c0d9cc";
 var cityQuery = "q=";
-var cityName = "";
-var isMetric = "&units=metric";
+var isMetric = true;
+var metricVal = "&units=metric";
 var unitsButton = document.getElementById('changeUnits');
 var canvasVar = document.getElementById('skyIcon');
-
+var cityName = "";
 var icons = new Skycons({"color": "black"});
+var tempText = document.getElementById("temperature");
+var temperature;
+var tempStart = true;
+var fahrenheit;
+
 
 icons.set("clear-day", Skycons.CLEAR_DAY);
 icons.set("clear-night", Skycons.CLEAR_NIGHT);
@@ -72,7 +78,7 @@ function getLeJSON(url) {
       if (xhr.status === 200 ) {
         resolve(xhr.response);
       } else {
-        reject(Error("There was an error! Error:" + xhr.statusText));
+        reject(Error("There was an error! Error:"  + xhr.statusText));
       }
     };
     xhr.onerror = function() {
@@ -89,16 +95,13 @@ function startUp() {
 //   // congrats you have a Blob with location data!
 //   // next build a url for weather api using the data
 //   var locationJson = JSON.parse(response);
-//   console.log(response, "le response");
-//   console.log(locationJson, "location json");
-//   return baseUrl + lat + locationJson.location.latitude + long + locationJson.location.longitude + apiId + isMetric;
+//   return baseUrl + lat + locationJson.location.latitude + long + locationJson.location.longitude + apiId;
 //   // after that we need to request the Blob from weather api (see next chained promise with .then)
-//
 // }, function(error){
 //   // there was a problem with getting location so prompt for city name
 //   cityName = prompt("There was a problem! Error:" + error + ". Please input your city manually.");
-//    return baseUrl + cityQuery + cityName + apiId + isMetric;
-// }
+//    return baseUrl + cityQuery + cityName + apiId;
+//  }
 // ).then(function(weatherUrl){ console.log(weatherUrl);
 //                   var xhr = new XMLHttpRequest();
 //                   xhr.open("GET", weatherUrl, false);
@@ -115,11 +118,12 @@ function startUp() {
 function viewInitialise() {
     console.log(jsonObject, "json object inside view");
     // everything to render to the page should go here
-    var temperature = jsonObject.main.temp;
+    temperature = (jsonObject.main.temp -273.15).toFixed(2);
+    fahrenheit = ((temperature * (9/5)) + 32).toFixed(2);
     var city = jsonObject.name;
     var country = jsonObject.sys.country;
     document.getElementById("location").textContent = city + ", " + country;
-    document.getElementById("temperature").textContent = temperature;
+    tempText.textContent = temperature;
 
     setIcon(jsonObject.weather["0"].id);
     icons.play();
@@ -128,9 +132,17 @@ function viewInitialise() {
   }
 
 function changeUnits() {
-  isMetric = isMetric == "&units=metric" ? "&units=imperial" : "&units=metric";
-  console.log("isMetric");
-  return startUp();
+
+  if(isMetric===true) {
+    tempText.textContent = fahrenheit;
+  }
+  if (isMetric=== false) {
+    tempText.textContent = temperature;
+  }
+
+
+  isMetric = isMetric == true ? false : true;
+
 }
 
 function setIcon(weatherCode) {
@@ -158,7 +170,7 @@ function setIcon(weatherCode) {
     icons.set(canvasVar.id, Skycons.CLOUDY);
   } else if ( weatherCode > 900 ) {
     canvasVar.id = "wind";
-    icons.set(canvasVar.id, Skycons.CLEAR);
+    icons.set(canvasVar.id, Skycons.WIND);
   }
 }
 unitsButton.addEventListener('click', changeUnits);
