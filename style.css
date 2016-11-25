@@ -29,3 +29,12 @@ h2 {
   height: 400px;
   border: 1px solid black;
 }
+
+#canvasId {
+}
+
+figure {
+	margin: 5em auto;
+	width: 350px;
+	height: 150px;
+}
