@@ -7,18 +7,24 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<div class="wrapper">
+
   <figure class="icons">
     <div id="canvasId" class="icons">
-      <canvas id="skyIcon" width="300" height="300"></canvas>
+      <canvas id="skyIcon"></canvas>
     </div>
+      <p id="location"></p>
   </figure>
 
   <div>
-    <p id="location"></p>
+
     <div id= "temperature-and-units">
       <button id="changeUnits"><p id="temperature"></p><p id="unit-convert">°C</p></button>
     </div>
   </div>
+
+</div>
 
 <script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
 <script src="script.js"></script>

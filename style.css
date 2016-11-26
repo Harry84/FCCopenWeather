@@ -1,16 +1,33 @@
 @import url('https://fonts.googleapis.com/css?family=Bitter|Inconsolata|McLaren|Muli|Oldenburg|PT+Sans|Patua+One|Roboto+Slab|Ubuntu');
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #007299;
+
+}
+
+
+/*
 .header {
   display: flex;
   justify-content: center;
   border: 1px solid black;
 }
-
+*/
 #temperature-and-units {
   text-align: center;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
+#changeUnits {
+  position: absolute;
+}
+/*
 h1 {
   font-family: "McLaren";
 }
@@ -29,8 +46,8 @@ h2 {
 #canvasId {
 }
 
-figure {
-	margin: 5em auto;
+#icons {
+	margin: 2em auto;
 	width: 350px;
 	height: 150px;
 }
@@ -38,9 +55,70 @@ figure {
 #temperature {
   font-size: 3em;
 }
-
+*/
 #changeUnits {
   font-size: 3em;
-  background-color: transparent;
-  border-color: transparent;
+  background-color: rgb(98, 61, 219);
+  border-color: white;
+  /*text-align: center;*/
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  position: relative;
+  margin-bottom: 1em;
+  border-radius: 20%;
+  border-width: 6px;
 }
+
+button:focus {
+  outline-style: none;
+}
+
+.temperature {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.unit-convert {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+#location {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5em;
+}
+
+p {
+  color: white;
+  font-family: sans-serif;;
+}
+
+canvas {
+  width: 450px;
+  /*height: 300;*/
+}
+
+/*Mobile response*******************/
+
+@media only screen and (max-width: 500px) {
+    body {
+        width:60%;
+    }
+
+    canvas {
+    	width: 350px;
+    /*	height: 250px;*/
+    }
+
+    #changeUnits {
+      font-size: 2em;
+    }
+
+
+  }
