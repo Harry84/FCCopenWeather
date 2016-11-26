@@ -5,10 +5,10 @@ var jsonObject = {
 },
 "weather": [
 {
-"id": 901,
+"id": 800,
 "main": "Clouds",
 "description": "few clouds",
-"icon": "02d"
+  "icon": "01d"
 }
 ],
 "base": "stations",
@@ -146,6 +146,7 @@ function changeUnits() {
 }
 
 function setIcon(weatherCode) {
+  var dayOrNight = jsonObject.weather[0].icon.split("");
   console.log(weatherCode, "weather code");
   if ( weatherCode >= 200 && weatherCode <= 299 ) {
     canvasVar.id = "sleet";
@@ -163,8 +164,14 @@ function setIcon(weatherCode) {
     canvasVar.id = "fog";
     icons.set(canvasVar.id, Skycons.FOG);
   } else if ( weatherCode == 800 ) {
-    canvasVar.id = "clear-day";
-    icons.set(canvasVar.id, Skycons.CLEAR_DAY);
+    console.log(dayOrNight);
+    if ( dayOrNight[2] == "d" ) {
+      canvasVar.id = "clear-day";
+      icons.set(canvasVar.id, Skycons.CLEAR_DAY);
+    } else if ( dayOrNight[2] == "n" ) {
+      canvasVar.id = "clear-night";
+      icons.set(canvasVar.id, Skycons.CLEAR_NIGHT);
+    }
   }  else if ( weatherCode > 800 && weatherCode < 805 ) {
     canvasVar.id = "cloudy";
     icons.set(canvasVar.id, Skycons.CLOUDY);
