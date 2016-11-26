@@ -53,7 +53,7 @@ var metricVal = "&units=metric";
 var unitsButton = document.getElementById('changeUnits');
 var canvasVar = document.getElementById('skyIcon');
 var cityName = "";
-var icons = new Skycons({"color": "black"});
+var icons = new Skycons({"color": "white"});
 var unitsConvert = document.getElementById('unit-convert');
 var tempText = document.getElementById("temperature");
 var temperature;
