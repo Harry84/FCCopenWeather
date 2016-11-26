@@ -54,6 +54,7 @@ var unitsButton = document.getElementById('changeUnits');
 var canvasVar = document.getElementById('skyIcon');
 var cityName = "";
 var icons = new Skycons({"color": "black"});
+var unitsConvert = document.getElementById('unit-convert');
 var tempText = document.getElementById("temperature");
 var temperature;
 var tempStart = true;
@@ -139,11 +140,11 @@ function changeUnits() {
   console.log(isMetric);
   if(isMetric===true) {
     tempText.textContent = fahrenheit;
-    unitsButton.textContent = unitFar;
+    unitsConvert.textContent = unitFar;
   }
   if (isMetric=== false) {
     tempText.textContent = temperature;
-    unitsButton.textContent = unitCel;
+    unitsConvert.textContent = unitCel;
   }
 
 

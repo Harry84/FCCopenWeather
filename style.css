@@ -6,13 +6,9 @@
   border: 1px solid black;
 }
 
-.weather {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  border: 1px solid black;
-  height: 400px;
+#temperature-and-units {
+  text-align: center;
+  display: inline-block;
 }
 
 h1 {
@@ -37,4 +33,14 @@ figure {
 	margin: 5em auto;
 	width: 350px;
 	height: 150px;
+}
+
+#temperature {
+  font-size: 3em;
+}
+
+#changeUnits {
+  font-size: 3em;
+  background-color: transparent;
+  border-color: transparent;
 }
