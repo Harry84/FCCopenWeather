@@ -5,7 +5,7 @@ var jsonObject = {
 },
 "weather": [
 {
-"id": 801,
+"id": 901,
 "main": "Clouds",
 "description": "few clouds",
 "icon": "02d"
@@ -162,9 +162,9 @@ function setIcon(weatherCode) {
   }  else if ( weatherCode >= 700 && weatherCode <= 799 ) {
     canvasVar.id = "fog";
     icons.set(canvasVar.id, Skycons.FOG);
-  } else if ( weatherCode === 800 ) {
-    canvasVar.id = "clear";
-    icons.set(canvasVar.id, Skycons.CLEAR);
+  } else if ( weatherCode == 800 ) {
+    canvasVar.id = "clear-day";
+    icons.set(canvasVar.id, Skycons.CLEAR_DAY);
   }  else if ( weatherCode > 800 && weatherCode < 805 ) {
     canvasVar.id = "cloudy";
     icons.set(canvasVar.id, Skycons.CLOUDY);
