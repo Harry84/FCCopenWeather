@@ -47,6 +47,8 @@ var long = "&lon=";
 var apiId = "&appid=afe224f25cdf028a03b1b75949c0d9cc";
 var cityQuery = "q=";
 var isMetric = true;
+var unitFar = "°F";
+var unitCel = "°C";
 var metricVal = "&units=metric";
 var unitsButton = document.getElementById('changeUnits');
 var canvasVar = document.getElementById('skyIcon');
@@ -132,12 +134,16 @@ function viewInitialise() {
   }
 
 function changeUnits() {
-
+  // °F
+  console.log(unitsButton);
+  console.log(isMetric);
   if(isMetric===true) {
     tempText.textContent = fahrenheit;
+    unitsButton.textContent = unitFar;
   }
   if (isMetric=== false) {
     tempText.textContent = temperature;
+    unitsButton.textContent = unitCel;
   }
 
 
