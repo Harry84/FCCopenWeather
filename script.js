@@ -5,10 +5,10 @@ var jsonObject = {
 },
 "weather": [
 {
-"id": 901,
+"id": 800,
 "main": "Clouds",
 "description": "few clouds",
-"icon": "02d"
+  "icon": "01d"
 }
 ],
 "base": "stations",
@@ -47,6 +47,8 @@ var long = "&lon=";
 var apiId = "&appid=afe224f25cdf028a03b1b75949c0d9cc";
 var cityQuery = "q=";
 var isMetric = true;
+var unitFar = "°F";
+var unitCel = "°C";
 var metricVal = "&units=metric";
 var unitsButton = document.getElementById('changeUnits');
 var canvasVar = document.getElementById('skyIcon');
@@ -132,12 +134,16 @@ function viewInitialise() {
   }
 
 function changeUnits() {
-
+  // °F
+  console.log(unitsButton);
+  console.log(isMetric);
   if(isMetric===true) {
     tempText.textContent = fahrenheit;
+    unitsButton.textContent = unitFar;
   }
   if (isMetric=== false) {
     tempText.textContent = temperature;
+    unitsButton.textContent = unitCel;
   }
 
 
@@ -146,6 +152,7 @@ function changeUnits() {
 }
 
 function setIcon(weatherCode) {
+  var dayOrNight = jsonObject.weather[0].icon.split("");
   console.log(weatherCode, "weather code");
   if ( weatherCode >= 200 && weatherCode <= 299 ) {
     canvasVar.id = "sleet";
@@ -163,8 +170,14 @@ function setIcon(weatherCode) {
     canvasVar.id = "fog";
     icons.set(canvasVar.id, Skycons.FOG);
   } else if ( weatherCode == 800 ) {
-    canvasVar.id = "clear-day";
-    icons.set(canvasVar.id, Skycons.CLEAR_DAY);
+    console.log(dayOrNight);
+    if ( dayOrNight[2] == "d" ) {
+      canvasVar.id = "clear-day";
+      icons.set(canvasVar.id, Skycons.CLEAR_DAY);
+    } else if ( dayOrNight[2] == "n" ) {
+      canvasVar.id = "clear-night";
+      icons.set(canvasVar.id, Skycons.CLEAR_NIGHT);
+    }
   }  else if ( weatherCode > 800 && weatherCode < 805 ) {
     canvasVar.id = "cloudy";
     icons.set(canvasVar.id, Skycons.CLOUDY);
